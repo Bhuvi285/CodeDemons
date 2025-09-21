@@ -21,7 +21,7 @@ def create_template(image_path, save_path=None):
     # Resize for display (so large sheets fit screen)
     max_width, max_height = 1200, 800
     scale = min(max_width / orig_width, max_height / orig_height, 1.0)
-    display_img = cv2.resize(img, (int(orig_width*scale), int(orig_height*scale)))
+    display_img = cv2.resize(img, (int(orig_width * scale), int(orig_height * scale)))
     clone = display_img.copy()
 
     points = {}
@@ -49,7 +49,7 @@ def create_template(image_path, save_path=None):
 
             # Draw circle on display image
             cv2.circle(clone, (x, y), 6, (0, 0, 255), -1)
-            cv2.putText(clone, q_no, (x+5, y-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+            cv2.putText(clone, q_no, (x + 5, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
             cv2.imshow("Template Builder", clone)
 
     # Create resizable window
@@ -59,9 +59,17 @@ def create_template(image_path, save_path=None):
     cv2.resizeWindow("Template Builder", 1200, 800)
 
     print("👉 Click each bubble and type Question+Option in console (e.g., 1A, 1B, 2C).")
-    print("✅ Press any key in the window when finished to save template.")
+    print("✅ Press 'S' to save template JSON, or 'Q' to quit without saving.")
 
-    cv2.waitKey(0)
+    while True:
+        key = cv2.waitKey(0) & 0xFF
+        if key in [ord('s'), ord('S')]:
+            break
+        elif key in [ord('q'), ord('Q')]:
+            print("❌ Quit without saving template.")
+            cv2.destroyAllWindows()
+            return
+
     cv2.destroyAllWindows()
 
     # Final JSON
@@ -70,7 +78,7 @@ def create_template(image_path, save_path=None):
     # Determine save path
     if save_path is None:
         save_path = os.path.join("data", "templates", "version_A_template.json")
-    
+
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
     with open(save_path, "w") as f:
