@@ -1,0 +1,52 @@
+{
+  "detected_answers": {
+    "1": "D",
+    "2": "A",
+    "3": null,
+    "4": null,
+    "5": null,
+    "6": null,
+    "7": null,
+    "8": null,
+    "9": null,
+    "10": null,
+    "11": null,
+    "12": null,
+    "13": null,
+    "14": null,
+    "15": null,
+    "16": null,
+    "17": null,
+    "18": null,
+    "19": null,
+    "20": null
+  },
+  "evaluation": {
+    "total_score": 0,
+    "subject_scores": {
+      "General": 0
+    },
+    "per_question": {
+      "1": {
+        "student": "D",
+        "correct": "A",
+        "is_correct": false
+      },
+      "2": {
+        "student": "A",
+        "correct": "C",
+        "is_correct": false
+      },
+      "3": {
+        "student": null,
+        "correct": "B",
+        "is_correct": false
+      },
+      "4": {
+        "student": null,
+        "correct": "D",
+        "is_correct": false
+      }
+    }
+  }
+}
